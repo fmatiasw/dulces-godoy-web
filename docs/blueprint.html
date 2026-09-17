@@ -1,0 +1,675 @@
+<!-- Blueprint: Dulces Godoy premium web -->
+<title>Blueprint Dulces Godoy</title>
+<style>
+  :root{
+    --ink:#2b1d16;
+    --ink-soft:#5a4636;
+    --paper:#faf6ee;
+    --paper-2:#f0e6d3;
+    --paper-3:#e8dabf;
+    --line:#d9c8a8;
+    --mamon:#d9642c;
+    --mamon-ink:#7a3416;
+    --higo:#6b3654;
+    --higo-ink:#3d1e30;
+    --zapallo:#c68a2e;
+    --zapallo-ink:#6e4c15;
+    --accent:#a13d1f;
+    --ok:#4f6b3a;
+    --warn:#a3671c;
+    --warn-bg:#fbeed7;
+    --shadow: 0 1px 2px rgba(43,29,22,.06), 0 8px 24px -12px rgba(43,29,22,.18);
+    --radius: 14px;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f1e6d6;
+      --ink-soft:#cdb99c;
+      --paper:#1c140f;
+      --paper-2:#241a13;
+      --paper-3:#2d2018;
+      --line:#4a392a;
+      --mamon:#f0834a;
+      --mamon-ink:#ffcaa8;
+      --higo:#c579a4;
+      --higo-ink:#f0c7dd;
+      --zapallo:#e0ac4f;
+      --zapallo-ink:#f4dba8;
+      --accent:#f0834a;
+      --ok:#8fb56f;
+      --warn:#e0ac4f;
+      --warn-bg:#3a2c14;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f1e6d6;
+    --ink-soft:#cdb99c;
+    --paper:#1c140f;
+    --paper-2:#241a13;
+    --paper-3:#2d2018;
+    --line:#4a392a;
+    --mamon:#f0834a;
+    --mamon-ink:#ffcaa8;
+    --higo:#c579a4;
+    --higo-ink:#f0c7dd;
+    --zapallo:#e0ac4f;
+    --zapallo-ink:#f4dba8;
+    --accent:#f0834a;
+    --ok:#8fb56f;
+    --warn:#e0ac4f;
+    --warn-bg:#3a2c14;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600&display=swap');
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans',ui-sans-serif,system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding-inline:24px;}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--ink);text-wrap:balance;margin:0;}
+  p{margin:0 0 1em;color:var(--ink-soft);max-width:66ch;}
+  a{color:var(--accent);}
+
+  /* Cover */
+  .cover{
+    padding-block:96px 64px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(120% 90% at 12% -10%, color-mix(in srgb, var(--mamon) 16%, transparent), transparent 60%),
+      radial-gradient(100% 80% at 100% 0%, color-mix(in srgb, var(--higo) 12%, transparent), transparent 55%),
+      var(--paper);
+  }
+  .eyebrow{
+    font-family:'Caveat',cursive;
+    font-size:1.6rem;
+    color:var(--accent);
+    display:inline-block;
+    margin-bottom:4px;
+  }
+  .cover h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.05;max-width:14ch;}
+  .cover .sub{font-size:1.05rem;max-width:56ch;margin-top:18px;}
+  .cover-meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:32px;
+  }
+  .chip{
+    font-size:.8rem;font-weight:600;letter-spacing:.02em;
+    padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+    color:var(--ink-soft);background:var(--paper-2);
+  }
+
+  /* TOC */
+  nav.toc{
+    position:sticky;top:0;z-index:10;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.toc .wrap{
+    display:flex;gap:4px;overflow-x:auto;padding-block:10px;
+    scrollbar-width:none;
+  }
+  nav.toc .wrap::-webkit-scrollbar{display:none;}
+  nav.toc a{
+    white-space:nowrap;font-size:.82rem;font-weight:600;color:var(--ink-soft);
+    text-decoration:none;padding:6px 10px;border-radius:8px;
+  }
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+
+  section{padding-block:56px;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .kicker{
+    font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;display:block;
+  }
+  section h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:6px;}
+  section .lede{font-size:1.02rem;margin-top:14px;max-width:62ch;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}
+  @media (max-width:640px){.grid2{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;
+  }
+  .card h3{font-size:1.05rem;margin-bottom:8px;}
+  .card p{margin-bottom:0;font-size:.94rem;}
+
+  .callout{
+    display:flex;gap:12px;align-items:flex-start;
+    background:var(--warn-bg);border:1px solid color-mix(in srgb, var(--warn) 40%, var(--line));
+    border-radius:var(--radius);padding:16px 18px;margin-top:20px;
+  }
+  .callout .dot{
+    flex:none;width:22px;height:22px;border-radius:50%;
+    background:var(--warn);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.78rem;font-weight:700;margin-top:2px;
+  }
+  .callout p{margin:0;font-size:.92rem;color:var(--ink);}
+  .callout strong{color:var(--ink);}
+
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:.92rem;}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);}
+  td{color:var(--ink-soft);}
+  tr:first-child th{border-top:1px solid var(--line);}
+  .tbl-wrap{overflow-x:auto;}
+  .tag-win{color:var(--ok);font-weight:600;}
+  .tag-gap{color:var(--accent);font-weight:600;}
+
+  .swatches{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
+  .swatch{width:118px;}
+  .swatch .fill{height:72px;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);}
+  .swatch .label{font-size:.76rem;color:var(--ink-soft);margin-top:6px;line-height:1.3;}
+  .swatch .hex{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--ink-soft);}
+
+  .type-sample{margin-top:22px;}
+  .type-sample .disp{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:600;margin-bottom:4px;}
+  .type-sample .disp-i{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:1.3rem;color:var(--ink-soft);margin-bottom:14px;}
+  .type-sample .body-s{font-family:'Work Sans';font-size:1rem;max-width:60ch;}
+  .type-sample .accent-s{font-family:'Caveat',cursive;font-size:1.6rem;color:var(--accent);}
+
+  .sitemap{margin-top:24px;display:flex;flex-direction:column;gap:8px;}
+  .sitemap .row{
+    display:flex;align-items:baseline;gap:14px;
+    padding:10px 0;border-bottom:1px dashed var(--line);
+  }
+  .sitemap .n{font-family:'Fraunces',serif;color:var(--accent);font-weight:600;min-width:26px;}
+  .sitemap .t{font-weight:600;min-width:170px;}
+  .sitemap .d{font-size:.9rem;color:var(--ink-soft);}
+
+  .timeline{margin-top:28px;position:relative;padding-left:28px;}
+  .timeline::before{
+    content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line);
+  }
+  .step{position:relative;padding-bottom:26px;}
+  .step:last-child{padding-bottom:0;}
+  .step::before{
+    content:attr(data-n);
+    position:absolute;left:-28px;top:0;width:20px;height:20px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--accent);color:var(--accent);
+    font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+    font-family:'Work Sans';
+  }
+  .step h3{font-size:1rem;margin-bottom:4px;}
+  .step p{font-size:.9rem;margin-bottom:0;}
+
+  .checklist{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:10px;}
+  .checklist li{
+    display:flex;gap:10px;align-items:flex-start;font-size:.94rem;color:var(--ink-soft);
+  }
+  .checklist li::before{
+    content:"○";color:var(--accent);flex:none;font-size:1rem;line-height:1.4;
+  }
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .pill{
+    font-size:.8rem;padding:5px 12px;border-radius:999px;border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+
+  .variant-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;}
+  @media (max-width:820px){.variant-grid{grid-template-columns:1fr;}}
+  .variant-card{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;display:flex;flex-direction:column;gap:10px;
+  }
+  .variant-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .variant-name{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;}
+  .variant-target{font-size:.7rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--accent);}
+  .variant-h1{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;line-height:1.25;margin:0;}
+  .variant-sub{font-size:.88rem;color:var(--ink-soft);margin:0;}
+  .variant-ctas{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+  .variant-cta{font-size:.78rem;font-weight:700;padding:4px 0;}
+  .variant-cta.primary{color:var(--accent);}
+  .variant-cta.secondary{color:var(--ink-soft);}
+  .variant-why{font-size:.82rem;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:2px;}
+
+  footer{padding-block:48px;text-align:center;}
+  footer p{margin:0 auto;font-size:.86rem;color:var(--ink-soft);}
+</style>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#publico">Público</a>
+    <a href="#competencia">Competencia</a>
+    <a href="#3segundos">3 segundos</a>
+    <a href="#identidad">Identidad</a>
+    <a href="#estructura">Estructura</a>
+    <a href="#narrativa">Narrativa</a>
+    <a href="#animacion">Animación</a>
+    <a href="#carrito">Carrito · WhatsApp</a>
+    <a href="#stack">Stack</a>
+    <a href="#orden">Orden de construcción</a>
+    <a href="#necesito">Qué necesito de vos</a>
+    <a href="#cro-hero">Hero · conversión</a>
+    <a href="#movimiento">Movimiento</a>
+    <a href="#copy">Copywriting</a>
+    <a href="#produccion">Subir a producción</a>
+  </div>
+</nav>
+
+<div class="cover">
+  <div class="wrap">
+    <span class="eyebrow">Dulces Godoy — dirección creativa</span>
+    <h1>Blueprint para un sitio de dulces artesanales que se sienta premium</h1>
+    <p class="sub">Plano maestro de marca, narrativa, animación y tecnología para llevar a Dulces Godoy de "pedido por WhatsApp sin sitio" a una experiencia digital que compita con marcas gourmet nacionales — sin perder lo que la hace real: mamón, higo y zapallo cocidos como en casa, en Corrientes.</p>
+    <div class="cover-meta">
+      <span class="chip">Gastronomía · dulces artesanales</span>
+      <span class="chip">Corrientes / Chaco</span>
+      <span class="chip">Venta vía WhatsApp</span>
+      <span class="chip">Doc. de trabajo — v1</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="diagnostico">
+  <span class="kicker">01 · Diagnóstico</span>
+  <h2>Un producto real, sin vidriera digital</h2>
+  <p class="lede">Dulces Godoy fabrica dulces artesanales de mamón, higo y zapallo — productos regionales que casi no existen en el circuito gourmet de las grandes ciudades. Hoy esa ventaja no se ve en ningún lado: no hay sitio, la venta corre 100% por WhatsApp y el local (@dulcescaserosgodoy) apunta a un público hogareño de salón y reparto en Corrientes y Chaco.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>A favor</h3>
+      <p>Producto artesanal genuino, con historia de origen y una operación real detrás (fábrica, salón, reparto propio). Eso es exactamente lo que el mercado gourmet porteño paga caro y casi nunca es cierto en otras marcas.</p>
+    </div>
+    <div class="card">
+      <h3>En contra</h3>
+      <p>Cero presencia digital de venta, identidad visual sin digitalizar (paleta y tipografía del logo aún no confirmadas en archivo) y una lógica de despacho pensada solo para la zona local, no para pedidos de todo el país.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Nota de honestidad:</strong> este documento no inventa datos de marca. Donde falta un hecho confirmado (colores exactos, tipografía, precios, número de WhatsApp comercial), lo digo explícitamente en vez de asumirlo.</p>
+  </div>
+</section>
+
+<section id="publico">
+  <span class="kicker">02 · Público objetivo</span>
+  <h2>Dos públicos, un mismo dulce</h2>
+  <p class="lede">El sitio tiene que servir a la vez al cliente de siempre y abrir la puerta a uno nuevo, sin que ninguno sienta que el otro no está considerado.</p>
+  <table>
+    <tr><th>Público</th><th>Quién es</th><th>Qué necesita del sitio</th></tr>
+    <tr>
+      <td><strong>Local / histórico</strong></td>
+      <td>Familias de Corrientes y Chaco, clientes de salón y reparto, ya conocen el producto.</td>
+      <td>Pedir rápido por WhatsApp, ver qué hay disponible, confirmar precios y días de reparto.</td>
+    </tr>
+    <tr>
+      <td><strong>Gourmet a distancia</strong></td>
+      <td>Consumidores de productos regionales/artesanales en Buenos Aires, Rosario, Córdoba; compran para regalar o para "traer algo distinto a la mesa".</td>
+      <td>Entender qué hace especial al mamón/higo/zapallo, confiar en que es artesanal de verdad, saber si les llega a su ciudad.</td>
+    </tr>
+  </table>
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Pendiente de definir con vos:</strong> si el sitio va a vender activamente a todo el país desde el día uno, o si arranca reforzando el pedido local y deja la venta nacional como fase 2. Esto cambia la prioridad de la sección de envíos (ver punto 09).</p>
+  </div>
+</section>
+
+<section id="competencia">
+  <span class="kicker">03 · Mapa competitivo</span>
+  <h2>La vara está más baja de lo que parece</h2>
+  <p class="lede">Miré dos referencias que vos mismo marcaste: Jumbalay (aspiracional en estética, pero producto industrial de góndola) y Ñapi-Ú (competencia directa: también dulces artesanales de Corrientes). Ninguna de las dos está contando bien la historia.</p>
+  <div class="tbl-wrap">
+  <table>
+    <tr><th>Marca</th><th>Fortaleza</th><th>Debilidad</th><th>Oportunidad para Godoy</th></tr>
+    <tr>
+      <td><strong>Jumbalay</strong><br><span style="font-size:.82rem;color:var(--ink-soft)">jumbalay.com.ar</span></td>
+      <td>Hero fotográfico potente, tipografía serif editorial, paleta cálida coherente, red de puntos de venta nacional.</td>
+      <td>Es un producto de góndola industrial disfrazado de gourmet; su tienda online (subdominio) es un ecommerce genérico de Tiendanube, sin relación visual con el sitio principal.</td>
+      <td><span class="tag-win">Copiar el nivel de foto/tipografía del sitio institucional, sin caer en su tienda genérica.</span></td>
+    </tr>
+    <tr>
+      <td><strong>Ñapi-Ú</strong><br><span style="font-size:.82rem;color:var(--ink-soft)">napiu.com</span></td>
+      <td>Es de Bella Vista, Corrientes — misma región, mismo tipo de dulce artesanal. Competencia directa real.</td>
+      <td>Plantilla genérica, logo chico, sin narrativa de marca, sin tienda online, solo un widget de WhatsApp flotante.</td>
+      <td><span class="tag-gap">Es el rival más fácil de superar en experiencia digital: ganás con casi cualquier ejecución cuidada.</span></td>
+    </tr>
+  </table>
+  </div>
+  <p style="margin-top:18px;font-size:.9rem;">Conclusión: nadie en esta categoría está combinando <strong>fotografía real del proceso artesanal</strong> con <strong>compra fácil</strong>. Ese cruce es el espacio libre para Dulces Godoy.</p>
+</section>
+
+<section id="3segundos">
+  <span class="kicker">04 · Los primeros 3 segundos</span>
+  <h2>Qué tiene que sentir quien entra</h2>
+  <p class="lede">No "lujo frío" tipo joyería. Un lujo cálido y táctil: la sensación de que alguien realmente cocinó esto a fuego lento, en una olla de verdad, con fruta de verdad — y que se puede pedir con un clic.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Sí</h3>
+      <p>Calidez, textura, algo que se ve recién hecho. Tipografía con carácter, no genérica. Un producto identificable (mamón, higo, zapallo) en primer plano, no un frasco anónimo.</p>
+    </div>
+    <div class="card">
+      <h3>No</h3>
+      <p>Foto de stock gourmet genérica, gradiente violeta corporativo, sensación de "landing de agencia", cualquier cosa que parezca hecha en fábrica en vez de en un salón familiar.</p>
+    </div>
+  </div>
+</section>
+
+<section id="identidad">
+  <span class="kicker">05 · Identidad visual</span>
+  <h2>Dirección propuesta — pendiente de validar</h2>
+  <div class="callout" style="background:color-mix(in srgb, var(--ok) 12%, var(--paper-2));border-color:color-mix(in srgb, var(--ok) 35%, var(--line));">
+    <span class="dot" style="background:var(--ok);">✓</span>
+    <p><strong>Resuelto:</strong> encontramos <code>logo-godoy.pdf</code> (el archivo vectorial real) en el Drive. El color de tinta del logotipo "Godoy" es exacto, extraído directo del vector: <strong>#534741</strong> — no es una aproximación. El isotipo ya está recortado con fondo transparente y en uso en el prototipo (nav y como base de paleta).</p>
+  </div>
+  <p class="lede" style="margin-top:20px;">Paleta hipótesis — cada acento nace de un producto real, no de una moda de diseño:</p>
+  <div class="swatches">
+    <div class="swatch"><div class="fill" style="background:#faf6ee;border:1px solid #d9c8a8"></div><div class="label">Base crema</div><div class="hex">≈ #FAF6EE</div></div>
+    <div class="swatch"><div class="fill" style="background:#534741"></div><div class="label">Tinta del logo real</div><div class="hex">#534741 — exacto</div></div>
+    <div class="swatch"><div class="fill" style="background:#d9642c"></div><div class="label">Mamón</div><div class="hex">≈ #D9642C</div></div>
+    <div class="swatch"><div class="fill" style="background:#6b3654"></div><div class="label">Higo</div><div class="hex">≈ #6B3654</div></div>
+    <div class="swatch"><div class="fill" style="background:#c68a2e"></div><div class="label">Zapallo</div><div class="hex">≈ #C68A2E</div></div>
+  </div>
+  <p class="lede" style="margin-top:28px;">Tipografía hipótesis:</p>
+  <div class="type-sample">
+    <div class="disp">Mamón, higo y zapallo</div>
+    <div class="disp-i">cocidos como en casa</div>
+    <div class="body-s">Texto de cuerpo en Work Sans — legible, cálida, sin pretensión corporativa. Sirve para descripciones de producto, precios y el paso a paso del pedido.</div>
+    <div class="accent-s" style="margin-top:10px;">detalle cursivo, como el logo real</div>
+  </div>
+  <p class="lede" style="margin-top:28px;"><strong>Fotografía:</strong> nada de stock. Macro real del dulce (textura, brillo, el corte de la fruta), manos preparando, el frasco recién tapado, el salón. Si hoy no hay banco de fotos con esa calidad, es la prioridad número uno antes de maquetar — ver punto 12.</p>
+</section>
+
+<section id="estructura">
+  <span class="kicker">06 · Estructura del sitio</span>
+  <h2>Mapa de páginas y secciones</h2>
+  <div class="sitemap">
+    <div class="row"><span class="n">01</span><span class="t">Hero</span><span class="d">Impacto sensorial inmediato — el prototipo de este documento cubre esta pantalla.</span></div>
+    <div class="row"><span class="n">02</span><span class="t">Origen</span><span class="d">Corrientes, la tradición hogareña, qué hace distinto a un dulce hecho en casa vs. industrial.</span></div>
+    <div class="row"><span class="n">03</span><span class="t">Proceso</span><span class="d">Del fruto al frasco — storytelling visual del método artesanal.</span></div>
+    <div class="row"><span class="n">04</span><span class="t">Selección</span><span class="d">Catálogo por familia: Mamón / Higo / Zapallo, con variantes y presentaciones.</span></div>
+    <div class="row"><span class="n">05</span><span class="t">Tienda</span><span class="d">Grid de producto + carrito + checkout directo a WhatsApp (ver punto 09).</span></div>
+    <div class="row"><span class="n">06</span><span class="t">Dónde encontrarnos</span><span class="d">Salón, zona de reparto (Corrientes/Chaco) y puntos de venta si existen.</span></div>
+    <div class="row"><span class="n">07</span><span class="t">Contacto</span><span class="d">WhatsApp como canal principal, mail/teléfono como respaldo.</span></div>
+  </div>
+</section>
+
+<section id="narrativa">
+  <span class="kicker">07 · Narrativa de scroll</span>
+  <h2>El viaje emocional, no solo el orden de las secciones</h2>
+  <p class="lede">Cada scroll tiene que sumar una emoción, en este orden: <strong>impacto → raíz → proceso → deseo → confianza → acción.</strong></p>
+  <div class="timeline">
+    <div class="step" data-n="1"><h3>Impacto (Hero)</h3><p>El visitante entiende en un vistazo qué es esto y por qué es distinto.</p></div>
+    <div class="step" data-n="2"><h3>Raíz (Origen)</h3><p>Corrientes, lo casero, por qué existe este dulce y no otro.</p></div>
+    <div class="step" data-n="3"><h3>Proceso</h3><p>Ver la fruta convertirse en dulce genera la sensación de "esto es real", que es exactamente lo que Jumbalay y Ñapi-Ú no logran transmitir.</p></div>
+    <div class="step" data-n="4"><h3>Deseo (Selección)</h3><p>El catálogo se presenta como curaduría, no como góndola.</p></div>
+    <div class="step" data-n="5"><h3>Confianza</h3><p>Puntos de venta, zona de reparto, quién está detrás.</p></div>
+    <div class="step" data-n="6"><h3>Acción (Tienda / WhatsApp)</h3><p>Comprar tiene que sentirse tan fácil como escribirle a un vecino.</p></div>
+  </div>
+</section>
+
+<section id="animacion">
+  <span class="kicker">08 · Sistema de animación</span>
+  <h2>Movimiento con propósito, no decoración</h2>
+  <p class="lede">Regla general: cada animación existe para reforzar la narrativa del punto 07, no para "verse moderno". Menos es más — un sitio de dulces caseros no necesita efectos de sitio de tecnología.</p>
+  <ul class="checklist">
+    <li><strong>Entrada del hero:</strong> el titular y la imagen aparecen con un leve desplazamiento hacia arriba (12–16px) al cargar, sin parpadeo — nunca arranca en blanco esperando que el usuario haga scroll.</li>
+    <li><strong>Scroll-reveal por sección:</strong> texto e imágenes entran con fade + rise cuando el bloque entra en pantalla (Intersection Observer), una sola vez.</li>
+    <li><strong>Parallax suave</strong> en las fotos de proceso (origen/proceso), nunca en el texto — el texto siempre queda quieto y legible.</li>
+    <li><strong>Hover de producto:</strong> elevación sutil + sombra cálida + el nombre del dulce se subraya con el color de su familia (mamón/higo/zapallo).</li>
+    <li><strong>Carrito:</strong> el conteo y el total cambian con un pequeño "pop", la barra de pedido entra deslizando desde abajo, nunca como modal que tapa todo.</li>
+    <li><strong>Micro-interacción de WhatsApp:</strong> el botón de pedido tiene un latido sutil (scale 1 → 1.03) solo cuando hay algo en el carrito, para guiar sin gritar.</li>
+  </ul>
+</section>
+
+<section id="carrito">
+  <span class="kicker">09 · Carrito + checkout por WhatsApp</span>
+  <h2>El carrito no cobra, ordena</h2>
+  <p class="lede">La operación real de Dulces Godoy ya funciona por WhatsApp (pedido → fábrica prepara → factura → reparto/cobro). El sitio tiene que reforzar ese flujo, no reemplazarlo por un ecommerce genérico con pasarela de pago que la empresa no necesita ni tiene.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Cómo funciona</h3>
+      <p>El visitante arma un carrito (guardado en el navegador, sin backend). Al finalizar, el sitio genera automáticamente un mensaje con el detalle del pedido y abre WhatsApp con ese texto precargado, listo para enviar al número comercial.</p>
+    </div>
+    <div class="card">
+      <h3>Zona de entrega</h3>
+      <p>Antes de generar el mensaje, se pregunta la provincia. Si es Corrientes o Chaco → se avisa que entra en la zona de reparto propio. Si es otra provincia → se aclara que el costo y la forma de envío se coordinan por WhatsApp antes de cerrar el pedido.</p>
+    </div>
+  </div>
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Decisión pendiente:</strong> no existe hoy una política de envío nacional definida (correo, costo, plazos). El sitio puede lanzar con el mensaje "coordinamos el envío por WhatsApp" y, si más adelante se define una tarifa fija con Correo Argentino o un courier, se agrega como un paso automático más.</p>
+  </div>
+  <p style="margin-top:18px;font-size:.9rem;">El prototipo adjunto a este documento incluye una demo funcional de este flujo (agregar productos, ver el resumen, y el botón que arma el link de WhatsApp).</p>
+</section>
+
+<section id="stack">
+  <span class="kicker">10 · Tecnología</span>
+  <h2>Liviano a propósito</h2>
+  <p class="lede">No hace falta un ecommerce pesado porque no hay pasarela de pago que integrar: el "checkout" es un mensaje de WhatsApp. Eso permite un stack simple, rápido y barato de mantener.</p>
+  <table>
+    <tr><th>Capa</th><th>Recomendación</th><th>Por qué</th></tr>
+    <tr><td>Framework</td><td>Astro (o Next.js si se prevé mucho contenido dinámico)</td><td>Sitio orientado a contenido, carga rápida, excelente SEO por defecto.</td></tr>
+    <tr><td>Estilos</td><td>Tailwind CSS</td><td>Sistema de diseño consistente (paleta/tipografía del punto 05) sin reinventar CSS por sección.</td></tr>
+    <tr><td>Animación / scroll</td><td>GSAP + ScrollTrigger</td><td>Es el estándar para narrativa de scroll con pines y parallax controlados; mejor control fino que soluciones más simples.</td></tr>
+    <tr><td>Carrito</td><td>Estado en el cliente (localStorage), sin backend de pagos</td><td>Coincide con la operación real: no se cobra en el sitio, se coordina por WhatsApp.</td></tr>
+    <tr><td>Catálogo</td><td>Archivo de productos versionado (v1); a futuro, sync opcional desde Google Sheets</td><td>El equipo ya gestiona stock en Sheets/AppSheet — en una fase 2 se puede alimentar el catálogo desde ahí sin tocar código.</td></tr>
+    <tr><td>Imágenes</td><td>Optimización nativa de Astro/Next (formatos modernos, responsive)</td><td>La fotografía real de producto es el activo más importante del sitio; tiene que verse nítida en cualquier pantalla.</td></tr>
+    <tr><td>Hosting</td><td>Vercel o Netlify</td><td>Deploy automático, gratis o muy económico para este volumen de tráfico.</td></tr>
+    <tr><td>Métricas</td><td>GA4 + Meta Pixel</td><td>Para medir de dónde viene el público "gourmet a distancia" del punto 02 y, a futuro, hacer publicidad segmentada.</td></tr>
+  </table>
+</section>
+
+<section id="orden">
+  <span class="kicker">11 · Orden exacto de construcción</span>
+  <h2>Roadmap paso a paso</h2>
+  <div class="timeline">
+    <div class="step" data-n="1"><h3>Activos reales</h3><p>Archivo del logo en alta resolución para extraer paleta y tipografía exactas; banco de fotos real de producto y proceso.</p></div>
+    <div class="step" data-n="2"><h3>Arquitectura de información</h3><p>Confirmar el mapa de páginas del punto 06 y ajustar según lo que realmente exista (puntos de venta, variantes de producto).</p></div>
+    <div class="step" data-n="3"><h3>Sistema visual</h3><p>Definir paleta y tipografía finales (ya no hipótesis) y armar los componentes base: botones, tarjetas de producto, chips de categoría.</p></div>
+    <div class="step" data-n="4"><h3>Prototipo de hero</h3><p>Validar la sensación de "los 3 segundos" — es lo que se entrega junto con este documento.</p></div>
+    <div class="step" data-n="5"><h3>Maquetado estático</h3><p>Todas las secciones del sitemap, mobile-first, sin animación todavía.</p></div>
+    <div class="step" data-n="6"><h3>Capa de animación</h3><p>Scroll-reveal, parallax y micro-interacciones del punto 08.</p></div>
+    <div class="step" data-n="7"><h3>Catálogo + carrito</h3><p>Grid de producto, lógica de carrito en el navegador, resumen de pedido.</p></div>
+    <div class="step" data-n="8"><h3>Checkout por WhatsApp</h3><p>Botón que arma el mensaje final + lógica de zona de entrega del punto 09.</p></div>
+    <div class="step" data-n="9"><h3>Performance y SEO</h3><p>Optimización de imágenes, metadatos, Open Graph para que se vea bien al compartir por WhatsApp/Instagram.</p></div>
+    <div class="step" data-n="10"><h3>QA y publicación</h3><p>Prueba en varios celulares reales (la mayoría del tráfico va a ser mobile), analítica activa, dominio y publicación.</p></div>
+  </div>
+</section>
+
+<section id="necesito">
+  <span class="kicker">12 · Qué necesito de vos para arrancar</span>
+  <h2>Nada de esto se inventa — se confirma</h2>
+  <p class="lede">Actualizado con la lista de precios real (PDF "Salón Ventas", 15.06.26) y las fotos reales del Drive. Esto es lo que ya se resolvió y lo que todavía falta.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>✅ Ya confirmado</h3>
+      <p>WhatsApp comercial (3794050585), dirección del salón (Maipú 1346, Corrientes), Instagram (@dulcescaserosgodoy), mail (oficinacentral@tonuttigodoy.com), año de fundación (1954), tagline real ("Endulzando momentos"), catálogo completo de 9 sabores (Mamón, Higo, Zapallo, Lima, Naranja, Kinoto, Aguaí, Guayaba, Batatita), precios de mostrador para 5 de ellos en 6 presentaciones, <strong>logo real en vector con hex exacto (#534741)</strong>, fotos reales de 4 sabores ya recortadas sobre blanco, y dos afirmaciones públicas de marca desde el propio Instagram: <strong>"Frutas del Litoral · Sin conservantes"</strong> y <strong>"Enviamos a todo el país"</strong>.</p>
+    </div>
+    <div class="card">
+      <h3>⏳ Todavía pendiente</h3>
+      <p>A qué corresponde cada precio de Aguaí (dulce vs. mermelada — el PDF trae dos precios sin aclarar cuál es cuál). Precio actual de Higo, Kinoto, Guayaba y Batatita (existen como sabor pero no están en la lista de precios de salón vigente). Costo/plazo real de envío a otras provincias (el bio de Instagram dice que se hace, pero no el detalle operativo). Foto real de Naranja. Dominio y hosting elegidos para publicar en serio (ver punto 16).</p>
+    </div>
+  </div>
+</section>
+
+<section id="cro-hero">
+  <span class="kicker">13 · Conversión del hero</span>
+  <h2>El hero, optimizado para decidir en 10 segundos</h2>
+  <p class="lede">El sitio todavía no está publicado, así que no hay datos reales de tráfico. Lo que sigue es una hipótesis construida sobre los canales reales de la marca (Instagram @dulcescaserosgodoy, boca en boca, WhatsApp) — hay que validarla con GA4/Meta apenas haya tráfico real (ver punto 10, métricas).</p>
+
+  <table>
+    <tr><th>Pregunta</th><th>Respuesta de trabajo</th></tr>
+    <tr>
+      <td><strong>¿Qué hacía el visitante antes de llegar?</strong></td>
+      <td>Mayoría: scrolleando Instagram, vio un reel o foto del dulce, tocó el link en bio — tráfico cálido, mobile, ya vio el producto en video. Minoría: buscó "dulce de mamón artesanal" sin conocer la marca — tráfico frío, comparando opciones.</td>
+    </tr>
+    <tr>
+      <td><strong>¿Qué promesa le importa de verdad?</strong></td>
+      <td>No es "lujo" en abstracto. Es la confirmación de que esto es realmente casero y que pedirlo es tan fácil como escribirle a alguien conocido por WhatsApp.</td>
+    </tr>
+    <tr>
+      <td><strong>¿Qué evidencia tiene que ver sin hacer scroll?</strong></td>
+      <td>Foto/textura real del dulce (nunca stock), origen concreto (Corrientes), y el ícono de WhatsApp en el botón — es "coincidencia de canal": ver el medio que ya usan confirma que llegaron al lugar correcto.</td>
+    </tr>
+    <tr>
+      <td><strong>¿Qué acción tiene que tomar en &lt;10s?</strong></td>
+      <td>Depende de si ya decidió: el que ya sabe qué quiere → WhatsApp directo. El que no decidió → ver sabores primero. Un solo camino pierde a uno de los dos grupos.</td>
+    </tr>
+  </table>
+
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Imagen de apoyo:</strong> hoy el hero usa una ilustración (frasco en SVG) como placeholder. Para conversión real, reemplazarla por el mismo frame o foto que mejor performa en Instagram — principio de "coincidencia de mensaje": si el visitante vio ese dulce en el reel que lo trajo, verlo de nuevo en el hero confirma en un vistazo que está en el lugar correcto.</p>
+  </div>
+
+  <p class="lede" style="margin-top:24px;">Diseño resultante (implementado en el prototipo del hero, artefacto aparte): título y subtítulo enfocados en la promesa real, botón primario que lleva a elegir sabores (cubre a la mayoría indecisa), botón secundario de WhatsApp directo con mensaje precargado (cubre a la minoría ya decidida), y una barra de evidencia — hecho a mano · Corrientes · WhatsApp — visible sin scroll.</p>
+
+  <p class="lede" style="margin-top:30px;"><strong>Tres variantes de copy para test A/B</strong>, cada una apostando a una hipótesis distinta sobre qué pesa más en la decisión:</p>
+
+  <div class="variant-grid">
+    <div class="variant-card">
+      <div class="variant-head">
+        <span class="variant-name">Variante A</span>
+        <span class="variant-target">Tráfico cálido</span>
+      </div>
+      <p class="variant-h1">"Tu dulce de siempre, a un WhatsApp de distancia"</p>
+      <p class="variant-sub">Mamón, higo y zapallo hechos a mano en Corrientes. Elegís los sabores y coordinamos la entrega por WhatsApp, como siempre.</p>
+      <div class="variant-ctas">
+        <span class="variant-cta primary">Primario: Elegir sabores y pedir</span>
+        <span class="variant-cta secondary">Secundario: Ya sé qué quiero ↗ (WhatsApp directo)</span>
+      </div>
+      <p class="variant-why"><strong>Hipótesis:</strong> reduce fricción para quien ya conoce la marca (Instagram/boca en boca); el CTA habla el idioma que ya usan. <em>Es la que está implementada hoy en el prototipo.</em></p>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-head">
+        <span class="variant-name">Variante B</span>
+        <span class="variant-target">Tráfico frío</span>
+      </div>
+      <p class="variant-h1">"El dulce que Corrientes hace en casa, no en fábrica"</p>
+      <p class="variant-sub">Mamón, higo y zapallo cocidos en tandas chicas. Pedilo y te llega estés donde estés.</p>
+      <div class="variant-ctas">
+        <span class="variant-cta primary">Primario: Ver los sabores</span>
+        <span class="variant-cta secondary">Secundario: Pedir por WhatsApp</span>
+      </div>
+      <p class="variant-why"><strong>Hipótesis:</strong> quien no conoce la marca necesita entender qué es y por qué es distinto antes de comprometerse a escribir; "ver" es la acción de menor fricción.</p>
+    </div>
+
+    <div class="variant-card">
+      <div class="variant-head">
+        <span class="variant-name">Variante C</span>
+        <span class="variant-target">Prueba + frescura</span>
+      </div>
+      <p class="variant-h1">"Mamón, higo y zapallo, cocidos hoy en Corrientes"</p>
+      <p class="variant-sub">Sin apuro y sin colorantes: cada frasco sale del salón familiar directo a tu mesa. Elegís, escribís, listo.</p>
+      <div class="variant-ctas">
+        <span class="variant-cta primary">Primario: Pedir por WhatsApp</span>
+        <span class="variant-cta secondary">Secundario: Conocé el proceso</span>
+      </div>
+      <p class="variant-why"><strong>Hipótesis:</strong> apuesta a "hoy" + proceso visible como prueba de frescura; el secundario alimenta a quien quiere más evidencia antes de decidir, en vez de solo catálogo.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Cómo testear:</strong> correr A vs. B en tráfico de Instagram/boca en boca vs. tráfico de búsqueda respectivamente (no mezclar audiencias en el mismo test), midiendo clics a WhatsApp y llegada a #familias como eventos de conversión en GA4/Meta. C se prueba después, contra la variante ganadora.</p>
+  </div>
+</section>
+
+<section id="movimiento">
+  <span class="kicker">14 · Sistema de movimiento</span>
+  <h2>Cómo se tiene que mover este sitio</h2>
+  <p class="lede">La personalidad de la marca es hogareña, artesanal, sin apuro — no tech, no corporativa. El movimiento tiene que sentirse como abrir una alacena, no como usar una app. Eso descarta parallax agresivo, cursor-follow, scroll-jacking y cualquier efecto que "muestre lo moderno que es el sitio" en vez de acompañar el contenido.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Dónde el movimiento suma</h3>
+      <p>En "Proceso" (le da ritmo a la historia del fruto al frasco), en la confirmación de que "agregar al pedido" funcionó (reduce la ansiedad de "¿esto se guardó?"), y en el hover de producto (imita el gesto de agarrar el frasco).</p>
+    </div>
+    <div class="card">
+      <h3>Dónde solo distrae o frena</h3>
+      <p>Cualquier animación de entrada que retrase poder tocar el botón de WhatsApp. Parallax pesado en fotos de fondo (jank en Android de gama media, que es buena parte del público local). Reveals que se repiten cada vez que el usuario sube y baja — cansan y no aportan nada la segunda vez.</p>
+    </div>
+  </div>
+
+  <p class="lede" style="margin-top:26px;"><strong>Límite de rendimiento en móviles:</strong> la mayoría del tráfico es celular, y no todos son gama alta. Reglas duras: solo animar <code>transform</code> y <code>opacity</code> (nunca <code>width</code>, <code>top</code> o <code>box-shadow</code> de forma continua); nada de video de fondo autoplay; parallax desactivado por completo debajo de 768px; una sola librería de animación si hace falta pinning (GSAP, cargada solo si se usa); imágenes debajo del pliegue con carga diferida; y respetar siempre <code>prefers-reduced-motion</code> apagando animaciones no esenciales.</p>
+
+  <table>
+    <tr><th>Momento</th><th>Especificación</th></tr>
+    <tr><td><strong>Entrada (carga de página)</strong></td><td>El hero aparece con un desplazamiento suave hacia arriba (12–16px), nunca desde opacidad 0 puro — el contenido tiene que ser legible desde el primer fotograma, no esperar a una animación para leerse.</td></tr>
+    <tr><td><strong>Scroll reveal</strong></td><td>Fade + rise al entrar en pantalla (Intersection Observer), una sola vez por elemento, con un desfase corto (60–100ms) entre elementos hermanos para que se sienta como una cascada natural, no simultáneo y robótico.</td></tr>
+    <tr><td><strong>Hover (solo desktop)</strong></td><td>Tarjetas de producto: elevación de 4–6px + sombra cálida. Botones: leve escala (1.02) y cambio de relleno. Links: subrayado en el color de la familia (mamón/higo/zapallo). Nunca mueve precio ni nombre de posición.</td></tr>
+    <tr><td><strong>Click / tap</strong></td><td>Feedback inmediato: escala hacia abajo (0.97) al presionar. "Agregar al pedido" cambia de estado al instante (texto + color), sin esperar animación — en conexiones lentas, la confirmación tiene que ser instantánea aunque el resto de la página tarde.</td></tr>
+    <tr><td><strong>Transiciones entre secciones/páginas</strong></td><td>Hoy es un scroll continuo de una sola página, sin transiciones de página. Si en el futuro se separan rutas (ej. /tienda o /contacto), usar solo cross-fade de opacidad (150–200ms), nunca slides o wipes — la transición no debe notarse, solo no debe interrumpir.</td></tr>
+  </table>
+
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Regla clara — lo que nunca se mueve:</strong> precios y nombres de producto (son el dato que decide la compra, tienen que ser estables y predecibles); el botón primario de WhatsApp (posición y tamaño fijos siempre — solo puede tener el latido sutil ya implementado cuando hay carrito activo); el texto que el usuario está leyendo (nunca se reanima después de entrar en pantalla); y cualquier campo de formulario mientras tiene el foco.</p>
+  </div>
+</section>
+
+<section id="copy">
+  <span class="kicker">15 · Copywriting de conversión</span>
+  <h2>Qué necesita leer el visitante en cada tramo del scroll</h2>
+  <p class="lede">El texto completo ya está escrito e implementado en el prototipo del sitio (artefacto aparte, mismo link que venías usando). Acá va el razonamiento detrás de cada bloque.</p>
+
+  <table>
+    <tr><th>Momento del scroll</th><th>Nivel de conocimiento / objeción</th><th>Qué resuelve el texto</th></tr>
+    <tr><td><strong>Hero</strong></td><td>No sabe si el sitio es serio o es una página armada apurada.</td><td>Promesa concreta + evidencia visible sin scroll (ver punto 13).</td></tr>
+    <tr><td><strong>Origen</strong></td><td>"¿Es artesanal de verdad o es una palabra de marketing?"</td><td>Frase concreta y verificable: se cocina en olla, en el salón, no en fábrica — sin adjetivos vacíos.</td></tr>
+    <tr><td><strong>Proceso</strong></td><td>Quiere ver el "cómo", no que se lo digan.</td><td>Tres pasos reales y simples (elegir fruta → cocinar en olla → envasar a mano), numerados porque es una secuencia real, no decoración.</td></tr>
+    <tr><td><strong>Selección</strong></td><td>"¿Cuánto sale y qué diferencia hay entre los tres?"</td><td>Precio visible por producto + una línea que distingue el sabor de cada uno.</td></tr>
+    <tr><td><strong>Envíos</strong></td><td>"¿Me llega a mí o esto es solo para Corrientes?"</td><td>Selector de zona con respuesta honesta para ambos casos (reparto propio vs. a coordinar) — nunca promete un envío nacional que todavía no existe.</td></tr>
+    <tr><td><strong>Cierre</strong></td><td>Ya decidió, solo falta el empujón final.</td><td>CTA corto y directo, mismo verbo que usó todo el sitio ("pedir"), sin fricción de copy nuevo a esta altura.</td></tr>
+  </table>
+
+  <div class="callout">
+    <span class="dot">!</span>
+    <p><strong>Lo que falta y no inventé:</strong> no tengo testimonios reales tuyos (comentarios de Instagram, mensajes de clientes) ni una muestra del lenguaje exacto que usan para describir el producto. Por eso el prototipo <strong>no incluye una sección de testimonios</strong> — mejor ausente que fabricada. En cuanto tengas 2–3 comentarios reales (con permiso de esa persona para publicarlos), se agrega como sección de confianza antes del cierre.</p>
+  </div>
+
+  <p class="lede" style="margin-top:22px;"><strong>Jerarquía de encabezados</strong> usada en el prototipo: H1 solo en el hero ("Tu dulce de siempre..."); H2 uno por sección (Origen, Proceso, Selección, Envíos, Cierre); H3 para cada producto dentro de Selección. Los microtextos de botones usan siempre el verbo "pedir" o "elegir" — nunca "comprar" ni "checkout", porque no es ese el lenguaje que ya usan tus clientes por WhatsApp.</p>
+</section>
+
+<section id="produccion">
+  <span class="kicker">16 · Cómo subir esto a producción</span>
+  <h2>Qué puedo hacer yo y qué es una decisión tuya</h2>
+  <p class="lede">El prototipo ya es una página real y viva — no es una maqueta estática. Lo que falta para que sea <em>tu</em> sitio, en tu dominio, son decisiones y accesos que solo vos podés dar (no puedo crear cuentas, comprar un dominio ni cargar credenciales tuyas por vos).</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Lo que ya puedo hacer directamente</h3>
+      <p>Publicar y actualizar el prototipo (ya está hecho — es el link que te pasé). Prepararte el código completo del sitio final, listo para desplegar. Escribirte instrucciones exactas, paso a paso, para la parte que te toca hacer con un par de clics.</p>
+    </div>
+    <div class="card">
+      <h3>Lo que necesita tu decisión o tu cuenta</h3>
+      <p>Elegir el dominio (¿un subdominio de tonuttigodoy.com, que ya es tuyo, o uno nuevo tipo dulcesgodoy.com.ar?). Crear/usar una cuenta de hosting (Vercel o Netlify, gratis para este volumen). Conectar el dominio desde donde lo compraste. Esos pasos requieren tu login — no los puedo hacer por vos, pero te los explico exactos.</p>
+    </div>
+  </div>
+
+  <p class="lede" style="margin-top:26px;"><strong>Camino recomendado, en orden:</strong></p>
+  <div class="timeline">
+    <div class="step" data-n="1"><h3>Elegís el dominio</h3><p>Lo más simple y barato: un subdominio de tonuttigodoy.com (ej. <code>dulces.tonuttigodoy.com</code> o <code>tienda.tonuttigodoy.com</code>), porque esa base ya la tenés. Si preferís una marca propia (dulcesgodoy.com.ar), se compra en NIC Argentina o en el registrador que uses, por un costo anual bajo.</p></div>
+    <div class="step" data-n="2"><h3>Confirmás los datos pendientes del punto 12</h3><p>Al menos: el hex real del logo y la aclaración de precios de Aguaí — para no publicar con datos aproximados.</p></div>
+    <div class="step" data-n="3"><h3>Yo armo el proyecto real</h3><p>Convierto este prototipo en un proyecto Astro con el stack del punto 10 (Tailwind, GSAP), con todo el contenido y catálogo ya cargado, y te lo dejo en un repositorio de GitHub.</p></div>
+    <div class="step" data-n="4"><h3>Creás la cuenta de hosting</h3><p>Entrás a vercel.com o netlify.com con tu mail, conectás el repositorio de GitHub (2-3 clics, sin tocar código) y el sitio queda publicado en una URL provisoria tipo <code>dulces-godoy.vercel.app</code>.</p></div>
+    <div class="step" data-n="5"><h3>Apuntás tu dominio</h3><p>Desde donde administrás tonuttigodoy.com (o el nuevo dominio), agregás un registro DNS que Vercel/Netlify te indica en pantalla. En unas horas, tu dominio muestra el sitio.</p></div>
+  </div>
+
+  <div class="callout" style="background:color-mix(in srgb, var(--ok) 12%, var(--paper-2));border-color:color-mix(in srgb, var(--ok) 35%, var(--line));">
+    <span class="dot" style="background:var(--ok);">✓</span>
+    <p><strong>Ya arrancado:</strong> el proyecto Astro real está creado, compila sin errores y lo probé corriendo en vivo (tamaños, precios y el link de WhatsApp generado, todo funcionando). Vive en <code>C:\Users\f_mat\dulces-godoy-web</code> en tu máquina, con Git ya inicializado y el primer commit hecho. Los pasos 1 y 2 (dominio, confirmar Aguaí/hex — el hex ya se resolvió) y el paso 3 (armar el proyecto) están hechos o en curso; quedan los pasos 4 y 5 (tu cuenta de hosting y el DNS), que son tuyos.</p>
+  </div>
+  <p class="lede" style="margin-top:20px;"><strong>Para seguir vos:</strong> el <code>README.md</code> del proyecto tiene el paso a paso exacto para subirlo a GitHub y conectarlo a Vercel. Resumen: crear un repo vacío en GitHub, <code>git remote add origin ...</code> y <code>git push</code>, después importar ese repo en vercel.com (detecta Astro solo) y agregar tu dominio en Settings → Domains.</p>
+</section>
+
+</div>
+
+<footer>
+  <p>Blueprint de dirección creativa · Dulces Godoy · documento vivo, se actualiza a medida que se confirman los datos del punto 12.</p>
+</footer>
