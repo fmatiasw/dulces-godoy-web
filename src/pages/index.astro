@@ -186,11 +186,12 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
       transition:opacity .7s ease, transform .7s ease;
     }
     .fam-card.in-view{opacity:1;transform:translateY(0);}
-    .fam-swatch{width:44px;height:44px;border-radius:50%;margin-bottom:16px;}
-    .fam-photo{
-      width:auto;height:150px;max-width:100%;object-fit:contain;border-radius:12px;margin:0 auto 16px;
-      display:block;background:#fff;padding:8px;
+    .fam-photo-wrap{
+      width:100%;height:150px;display:flex;align-items:center;justify-content:center;
+      border-radius:12px;margin:0 auto 16px;background:#fff;overflow:hidden;transition:background .2s ease;
     }
+    .fam-photo-wrap.no-photo .fam-photo{display:none;}
+    .fam-photo{height:100%;width:auto;max-width:100%;object-fit:contain;padding:8px;display:block;}
     .fam-card h3{font-family:'Fraunces',serif;font-size:1.3rem;margin:0 0 6px;}
     .fam-card p{color:var(--ink-soft);font-size:.92rem;margin:0 0 18px;}
     .fam-price{font-weight:700;font-size:1.05rem;margin-bottom:14px;}
@@ -342,7 +343,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
   <div class="container hero-grid">
     <div>
       <span class="hero-eyebrow">&ldquo;Endulzando momentos&rdquo;</span>
-      <h1>El mismo dulce<br>desde <em>1954</em>,<br>a un WhatsApp</h1>
+      <h1>El mismo dulce<br>de casa, desde <em>1954</em></h1>
       <p class="desc">Mamón, zapallo, lima, naranja y aguaí, cocidos en Corrientes desde 1954. Frutas del litoral, sin conservantes. Elegís los sabores y coordinamos la entrega por WhatsApp.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#familias">Elegir sabores y pedir</a>
@@ -371,7 +372,8 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
       <span class="hero-eyebrow">de dónde viene</span>
       <h2>Cuatro generaciones de la misma familia</h2>
       <p>Empezó en 1954: Clelia Gadea de Godoy cocinaba mamón en almíbar en su casa para ayudar a la economía familiar. Vendía de a poco a vecinos, después a hoteles y restaurantes — hasta llegar a las góndolas de Corrientes.</p>
-      <p>En 1993 su hijo Miguel Ángel Godoy recompró la fábrica junto a Beatriz, su esposa, y la relanzó como &ldquo;Dulces Caseros Godoy&rdquo;. Hoy seguimos cocinando mamón, zapallo, lima, naranja y aguaí de la misma manera: en olla, tanda por tanda, sin conservantes.</p>
+      <p>En 1993 su hijo Miguel Ángel Godoy recompró la fábrica junto a Beatriz, su esposa, y la relanzó como &ldquo;Dulces Caseros Godoy&rdquo;. En 2016 la heredó Mirta Clarisa Godoy, que sostuvo la misma calidad y el mismo método.</p>
+      <p>Hoy la cuarta generación —Melanie Scherf y Matías Woelflin— sigue al frente. Seguimos cocinando mamón, zapallo, lima, naranja y aguaí de la misma manera: en olla, tanda por tanda, sin conservantes.</p>
     </div>
   </div>
 </section>
@@ -396,11 +398,9 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     <div class="section-head">
       <span class="k">precios reales, salón 15.06.26</span>
       <h2>Elegí tamaño y sabor</h2>
-      <p>Los mismos precios de mostrador, actualizados. Sumá los que quieras al pedido.</p>
     </div>
 
     <div class="size-picker reveal" role="group" aria-label="Elegir tamaño del frasco">
-      <button type="button" class="size-btn" data-size="40g">40 g</button>
       <button type="button" class="size-btn" data-size="250g">250 g</button>
       <button type="button" class="size-btn active" data-size="850g">850 g</button>
       <button type="button" class="size-btn" data-size="1750g">1,75 kg</button>
@@ -409,7 +409,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
 
     <div class="fam-grid">
       <div class="fam-card" data-flavor="mamon">
-        <img class="fam-photo" src="/images/mamon.jpg" alt="Dulce de Mamón Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Mamón Godoy"></div>
         <h3>Mamón</h3>
         <p>El clásico de siempre — el mismo desde 1954.</p>
         <div class="fam-price"><span class="amount">$16.400</span> <span class="note">frasco 850 g</span></div>
@@ -417,7 +417,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="zapallo">
-        <img class="fam-photo" src="/images/zapallo.jpg" alt="Dulce de Zapallo Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Zapallo Godoy"></div>
         <h3>Zapallo</h3>
         <p>Dorado y aromático, con el dulzor justo.</p>
         <div class="fam-price"><span class="amount">$16.400</span> <span class="note">frasco 850 g</span></div>
@@ -425,7 +425,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="lima">
-        <img class="fam-photo" src="/images/lima.jpg" alt="Dulce de Lima Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Lima Godoy"></div>
         <h3>Lima</h3>
         <p>Cítrico y fresco, distinto a todo lo demás del mostrador.</p>
         <div class="fam-price"><span class="amount">$16.400</span> <span class="note">frasco 850 g</span></div>
@@ -433,7 +433,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="naranja">
-        <img class="fam-photo" src="/images/naranja.jpg" alt="Dulce de Naranja Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Naranja Godoy"></div>
         <h3>Naranja</h3>
         <p>Amargor justo de cáscara, dulzor de siempre.</p>
         <div class="fam-price"><span class="amount">$16.400</span> <span class="note">frasco 850 g</span></div>
@@ -441,42 +441,42 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="aguai">
-        <img class="fam-photo" src="/images/aguai.jpg" alt="Dulce de Aguaí Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Aguaí Godoy"></div>
         <h3>Aguaí</h3>
-        <p>La fruta regional menos común de las cinco — tiene una variante premium.</p>
-        <div class="fam-price"><span class="amount">$21.320 – $24.600</span> <span class="note">frasco 850 g · según variedad, se confirma por WhatsApp</span></div>
+        <p>La fruta regional menos común de las cinco — sabor único, difícil de conseguir.</p>
+        <div class="fam-price"><span class="amount">$24.600</span> <span class="note">frasco 850 g</span></div>
         <button class="add-btn">Agregar al pedido</button>
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="higo" data-temporada="1">
-        <img class="fam-photo" src="/images/higo.jpg" alt="Dulce de Higo Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Higo Godoy"></div>
         <h3>Higo <span class="temporada-badge">de temporada</span></h3>
         <p>Profundo y dulce, con la textura entera del higo.</p>
-        <div class="fam-price"><span class="amount">A confirmar</span> <span class="note">según stock de fruta · por WhatsApp</span></div>
+        <div class="fam-price"><span class="amount">$21.320</span> <span class="note">frasco 850 g</span></div>
         <button class="add-btn">Agregar al pedido</button>
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="kinoto" data-temporada="1">
-        <img class="fam-photo" src="/images/kinoto.jpg" alt="Dulce de Kinoto Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Kinoto Godoy"></div>
         <h3>Kinoto <span class="temporada-badge">de temporada</span></h3>
         <p>Cítrico chico, con ese amargor característico que lo hace distinto.</p>
-        <div class="fam-price"><span class="amount">A confirmar</span> <span class="note">según stock de fruta · por WhatsApp</span></div>
+        <div class="fam-price"><span class="amount">$21.320</span> <span class="note">frasco 850 g</span></div>
         <button class="add-btn">Agregar al pedido</button>
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="batatita" data-temporada="1">
-        <img class="fam-photo" src="/images/batatita.jpg" alt="Dulce de Batatita Godoy">
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Batatita Godoy"></div>
         <h3>Batatita <span class="temporada-badge">de temporada</span></h3>
         <p>Batata criolla en almíbar, dulce de toda la vida.</p>
-        <div class="fam-price"><span class="amount">A confirmar</span> <span class="note">según stock de fruta · por WhatsApp</span></div>
+        <div class="fam-price"><span class="amount">$21.320</span> <span class="note">frasco 850 g</span></div>
         <button class="add-btn">Agregar al pedido</button>
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
       <div class="fam-card" data-flavor="guayaba" data-temporada="1">
-        <div class="fam-swatch" style="background:#c65a4a"></div>
+        <div class="fam-photo-wrap"><img class="fam-photo" alt="Dulce de Guayaba Godoy"></div>
         <h3>Guayaba <span class="temporada-badge">de temporada</span></h3>
         <p>Tropical y perfumada, un clásico correntino.</p>
-        <div class="fam-price"><span class="amount">A confirmar</span> <span class="note">según stock de fruta · por WhatsApp</span></div>
+        <div class="fam-price"><span class="amount">$21.320</span> <span class="note">frasco 850 g</span></div>
         <button class="add-btn">Agregar al pedido</button>
         <div class="stepper" hidden><button class="step-btn step-minus" type="button" aria-label="Quitar uno">−</button><span class="step-qty">0</span><button class="step-btn step-plus" type="button" aria-label="Agregar uno">+</button></div>
       </div>
@@ -544,43 +544,73 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     mayoristaBtn.href = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent('Hola! Quería consultar precios por mayor (baldes) o el growler de almíbar.');
   }
 
-  // Precios reales, lista "Salón Ventas" (final, 15.06.26)
-  var SIZE_LABEL = {'40g':'40 g','250g':'250 g','465g':'465 g','850g':'850 g','1750g':'1,75 kg','3500g':'3,5 kg'};
-  var PRICE_BASE = { '40g':5140, '250g':7500, '465g':9960, '850g':16400, '1750g':36400, '3500g':60740 };
-  var PRICE_AGUAI_LOW  = { '40g':6680, '250g':9760, '465g':12940, '850g':21320, '1750g':47320, '3500g':78960 };
-  var PRICE_AGUAI_HIGH = { '40g':7700, '250g':11260,'465g':14940, '850g':24600, '1750g':54600, '3500g':91100 };
+  // Precios reales, lista "Salón Ventas" (final, 15.06.26) — sin 40g, ya no se comercializa
+  var SIZE_LABEL = {'250g':'250 g','465g':'465 g','850g':'850 g','1750g':'1,75 kg','3500g':'3,5 kg'};
+  var PRICE_BASE = { '250g':7500, '465g':9960, '850g':16400, '1750g':36400, '3500g':60740 };
+  var PRICE_MID  = { '250g':9760, '465g':12940, '850g':21320, '1750g':47320, '3500g':78960 };
+  var PRICE_AGUAI = { '250g':11260, '465g':14940, '850g':24600, '1750g':54600, '3500g':91100 };
 
   var FLAVOR_LABEL = {
     mamon:'Mamón', zapallo:'Zapallo', lima:'Lima', naranja:'Naranja', aguai:'Aguaí',
     higo:'Higo', kinoto:'Kinoto', batatita:'Batatita', guayaba:'Guayaba'
   };
-  var SIN_PRECIO = {higo:1, kinoto:1, batatita:1, guayaba:1};
+  var FLAVOR_TIER = {
+    mamon:'base', zapallo:'base', lima:'base', naranja:'base',
+    higo:'mid', kinoto:'mid', batatita:'mid', guayaba:'mid',
+    aguai:'aguai'
+  };
+  var TIER_TABLE = {base:PRICE_BASE, mid:PRICE_MID, aguai:PRICE_AGUAI};
   var currentSize = '850g';
   var cart = {};
   var zone = 'local';
 
+  // Solo se listan los tamaños de los que hay foto real. Si falta, la card muestra un color en vez de una imagen inventada.
+  var PRODUCT_IMAGES = {
+    mamon:    {'250g':'/images/products/mamon-250.jpg','465g':'/images/products/mamon-465.jpg','850g':'/images/products/mamon-850.jpg','3500g':'/images/products/mamon-3500.jpg'},
+    zapallo:  {'250g':'/images/products/zapallo-250.jpg','465g':'/images/products/zapallo-465.jpg','850g':'/images/products/zapallo-850.jpg','3500g':'/images/products/zapallo-3500.jpg'},
+    lima:     {'250g':'/images/products/lima-250.jpg','465g':'/images/products/lima-465.jpg','850g':'/images/products/lima-850.jpg'},
+    aguai:    {'465g':'/images/products/aguai-465.jpg','850g':'/images/products/aguai-850.jpg'},
+    naranja:  {'850g':'/images/products/naranja-850.jpg'},
+    higo:     {'250g':'/images/products/higo-250.jpg','850g':'/images/products/higo-850.jpg'},
+    kinoto:   {'465g':'/images/products/kinoto-465.jpg','850g':'/images/products/kinoto-850.jpg','3500g':'/images/products/kinoto-3500.jpg'},
+    batatita: {'250g':'/images/products/batatita-250.jpg'},
+    guayaba:  {}
+  };
+  var FLAVOR_COLOR = {
+    mamon:'#e0763a', zapallo:'#c68a2e', lima:'#8a9a4a', naranja:'#d98a2c', aguai:'#c9a13a',
+    higo:'#6b3654', kinoto:'#c9762e', batatita:'#a83d5a', guayaba:'#c65a4a'
+  };
+
   function fmt(n){ return '$' + n.toLocaleString('es-AR'); }
 
   function priceFor(flavor, size){
-    if(SIN_PRECIO[flavor]) return null;
-    if(flavor === 'aguai') return PRICE_AGUAI_LOW[size];
-    return PRICE_BASE[size];
+    return TIER_TABLE[FLAVOR_TIER[flavor]][size];
+  }
+
+  function updatePhoto(card){
+    var flavor = card.getAttribute('data-flavor');
+    var wrap = card.querySelector('.fam-photo-wrap');
+    if(!wrap) return;
+    var img = wrap.querySelector('.fam-photo');
+    var path = (PRODUCT_IMAGES[flavor] || {})[currentSize];
+    if(path){
+      img.src = path;
+      wrap.classList.remove('no-photo');
+      wrap.style.background = '#fff';
+    } else {
+      wrap.classList.add('no-photo');
+      wrap.style.background = FLAVOR_COLOR[flavor] || 'var(--accent)';
+    }
   }
 
   function renderCards(){
     document.querySelectorAll('.fam-card').forEach(function(card){
       var flavor = card.getAttribute('data-flavor');
-      if(!SIN_PRECIO[flavor]){
-        var amountEl = card.querySelector('.fam-price .amount');
-        var noteEl = card.querySelector('.fam-price .note');
-        if(flavor === 'aguai'){
-          amountEl.textContent = fmt(PRICE_AGUAI_LOW[currentSize]) + ' – ' + fmt(PRICE_AGUAI_HIGH[currentSize]);
-          noteEl.textContent = 'frasco ' + SIZE_LABEL[currentSize] + ' · según variedad, se confirma por WhatsApp';
-        } else {
-          amountEl.textContent = fmt(PRICE_BASE[currentSize]);
-          noteEl.textContent = 'frasco ' + SIZE_LABEL[currentSize];
-        }
-      }
+      var amountEl = card.querySelector('.fam-price .amount');
+      var noteEl = card.querySelector('.fam-price .note');
+      amountEl.textContent = fmt(priceFor(flavor, currentSize));
+      noteEl.textContent = 'frasco ' + SIZE_LABEL[currentSize];
+      updatePhoto(card);
       syncCardUI(card);
     });
   }
@@ -604,20 +634,14 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     var lines = ['Hola! Quiero pedir:'];
     var total = 0;
     var count = 0;
-    var hasSinPrecio = false;
     Object.keys(cart).forEach(function(key){
       var item = cart[key];
       count += item.qty;
-      if(item.price == null){
-        hasSinPrecio = true;
-        lines.push('- ' + item.qty + ' x Dulce de ' + item.label + ' (' + item.sizeLabel + ', precio a confirmar)');
-      } else {
-        total += item.qty * item.price;
-        lines.push('- ' + item.qty + ' x Dulce de ' + item.label + ' (' + item.sizeLabel + ', ' + fmt(item.price) + ' c/u)');
-      }
+      total += item.qty * item.price;
+      lines.push('- ' + item.qty + ' x Dulce de ' + item.label + ' (' + item.sizeLabel + ', ' + fmt(item.price) + ' c/u)');
     });
     lines.push('');
-    lines.push('Total' + (hasSinPrecio ? ' (parcial, falta confirmar algunos precios)' : '') + ': ' + fmt(total));
+    lines.push('Total: ' + fmt(total));
     lines.push(zone === 'local' ? 'Zona: Corrientes / Chaco (reparto propio o retiro en Maipú 1346)' : 'Zona: otra provincia (envío a todo el país)');
     return {text: lines.join('\n'), total: total, count: count};
   }
