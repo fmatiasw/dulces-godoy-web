@@ -197,6 +197,10 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     .fam-price{font-weight:700;font-size:1.05rem;margin-bottom:14px;}
     .fam-price .amount{font-family:'Fraunces',serif;}
     .fam-price .note{font-weight:400;font-size:.72rem;color:var(--ink-soft);display:block;margin-top:2px;}
+    .pack-hint{
+      display:block;font-weight:600;font-size:.72rem;color:var(--accent);margin-top:6px;
+    }
+    .pack-hint--active{color:var(--higo);}
 
     .temporada-badge{
       display:inline-block;font-family:'Karla',sans-serif;font-weight:700;font-size:.62rem;
@@ -549,6 +553,15 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
   var PRICE_BASE = { '250g':7500, '465g':9960, '850g':16400, '1750g':36400, '3500g':60740 };
   var PRICE_MID  = { '250g':9760, '465g':12940, '850g':21320, '1750g':47320, '3500g':78960 };
   var PRICE_AGUAI = { '250g':11260, '465g':14940, '850g':24600, '1750g':54600, '3500g':91100 };
+  var TIER_TABLE = {base:PRICE_BASE, mid:PRICE_MID, aguai:PRICE_AGUAI};
+
+  // Precios por caja cerrada, lista "Supermercados" (final, 15.06.26) — se aplican por unidad
+  // en cuanto la cantidad de ESE sabor+tamaño llega al tamaño de la caja.
+  var PACK_SIZE = {'250g':12, '465g':12, '850g':9, '1750g':6, '3500g':4};
+  var PRICE_BASE_BOX  = { '250g':5520, '465g':7320, '850g':12060, '1750g':26760, '3500g':44660 };
+  var PRICE_MID_BOX   = { '250g':7170, '465g':9520, '850g':15680, '1750g':34790, '3500g':58060 };
+  var PRICE_AGUAI_BOX = { '250g':8280, '465g':10980, '850g':18090, '1750g':40140, '3500g':66990 };
+  var BOX_TABLE = {base:PRICE_BASE_BOX, mid:PRICE_MID_BOX, aguai:PRICE_AGUAI_BOX};
 
   var FLAVOR_LABEL = {
     mamon:'Mamón', zapallo:'Zapallo', lima:'Lima', naranja:'Naranja', aguai:'Aguaí',
@@ -559,7 +572,6 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     higo:'mid', kinoto:'mid', batatita:'mid', guayaba:'mid',
     aguai:'aguai'
   };
-  var TIER_TABLE = {base:PRICE_BASE, mid:PRICE_MID, aguai:PRICE_AGUAI};
   var currentSize = '850g';
   var cart = {};
   var zone = 'local';
@@ -583,8 +595,25 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
 
   function fmt(n){ return '$' + n.toLocaleString('es-AR'); }
 
-  function priceFor(flavor, size){
-    return TIER_TABLE[FLAVOR_TIER[flavor]][size];
+  function isBoxQty(size, qty){
+    return qty >= PACK_SIZE[size];
+  }
+
+  function priceForQty(flavor, size, qty){
+    var tier = FLAVOR_TIER[flavor];
+    var table = isBoxQty(size, qty) ? BOX_TABLE[tier] : TIER_TABLE[tier];
+    return table[size];
+  }
+
+  function packHintEl(card){
+    var priceDiv = card.querySelector('.fam-price');
+    var hint = priceDiv.querySelector('.pack-hint');
+    if(!hint){
+      hint = document.createElement('span');
+      hint.className = 'pack-hint';
+      priceDiv.appendChild(hint);
+    }
+    return hint;
   }
 
   function updatePhoto(card){
@@ -606,10 +635,25 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
   function renderCards(){
     document.querySelectorAll('.fam-card').forEach(function(card){
       var flavor = card.getAttribute('data-flavor');
+      var key = cardKey(card);
+      var qty = cart[key] ? cart[key].qty : 0;
+      var pack = PACK_SIZE[currentSize];
+      var boxPrice = BOX_TABLE[FLAVOR_TIER[flavor]][currentSize];
       var amountEl = card.querySelector('.fam-price .amount');
       var noteEl = card.querySelector('.fam-price .note');
-      amountEl.textContent = fmt(priceFor(flavor, currentSize));
+      amountEl.textContent = fmt(priceForQty(flavor, currentSize, qty));
       noteEl.textContent = 'frasco ' + SIZE_LABEL[currentSize];
+
+      var hint = packHintEl(card);
+      if(isBoxQty(currentSize, qty)){
+        hint.textContent = '✓ Precio de caja aplicado (' + fmt(boxPrice) + ' c/u desde ' + pack + ' unidades)';
+        hint.classList.add('pack-hint--active');
+      } else {
+        var falta = pack - qty;
+        hint.textContent = 'Comprando ' + pack + ' (1 caja): ' + fmt(boxPrice) + ' c/u' + (qty > 0 ? ' · faltan ' + falta : '');
+        hint.classList.remove('pack-hint--active');
+      }
+
       updatePhoto(card);
       syncCardUI(card);
     });
@@ -638,7 +682,7 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
       var item = cart[key];
       count += item.qty;
       total += item.qty * item.price;
-      lines.push('- ' + item.qty + ' x Dulce de ' + item.label + ' (' + item.sizeLabel + ', ' + fmt(item.price) + ' c/u)');
+      lines.push('- ' + item.qty + ' x Dulce de ' + item.label + ' (' + item.sizeLabel + ', ' + fmt(item.price) + ' c/u' + (item.isBox ? ', precio de caja' : '') + ')');
     });
     lines.push('');
     lines.push('Total: ' + fmt(total));
@@ -681,11 +725,16 @@ const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral
     var flavor = card.getAttribute('data-flavor');
     var key = cardKey(card);
     if(!cart[key]){
-      cart[key] = {qty:0, price:priceFor(flavor, currentSize), label:FLAVOR_LABEL[flavor], sizeLabel:SIZE_LABEL[currentSize]};
+      cart[key] = {qty:0, price:0, label:FLAVOR_LABEL[flavor], sizeLabel:SIZE_LABEL[currentSize]};
     }
     cart[key].qty += delta;
-    if(cart[key].qty <= 0){ delete cart[key]; }
-    syncCardUI(card);
+    if(cart[key].qty <= 0){
+      delete cart[key];
+    } else {
+      cart[key].price = priceForQty(flavor, currentSize, cart[key].qty);
+      cart[key].isBox = isBoxQty(currentSize, cart[key].qty);
+    }
+    renderCards();
     render();
   }
 
