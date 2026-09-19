@@ -2,13 +2,14 @@
 const title = "Dulces Godoy — Dulces caseros de Corrientes desde 1954";
 const description = "Mamón, zapallo, lima, naranja y aguaí. Frutas del litoral, sin conservantes. Pedís por WhatsApp, enviamos a todo el país.";
 
-// Analítica y verificación de propiedad — cada una se activa sola apenas
-// exista la variable de entorno correspondiente (ver .env.example / README).
-// Sin la variable, no se imprime ningún script: nunca hay un ID inventado.
-const GSC_VERIFICATION = import.meta.env.PUBLIC_GSC_VERIFICATION;
-const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const CLARITY_PROJECT_ID = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
-const META_PIXEL_ID = import.meta.env.PUBLIC_META_PIXEL_ID;
+// Analítica y verificación de propiedad. Estos IDs no son secretos (quedan
+// visibles en el código de cualquier sitio publicado), así que van directo
+// acá en vez de por variable de entorno — evita tener que tocar Vercel.
+// Vacío = esa integración todavía no se imprime (nunca un ID inventado).
+const GSC_VERIFICATION = ''; // verificación ya resuelta con archivo HTML en /public
+const GA_MEASUREMENT_ID = 'G-98NK5EN5Y2';
+const CLARITY_PROJECT_ID = '';
+const META_PIXEL_ID = '';
 ---
 <!doctype html>
 <html lang="es">

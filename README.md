@@ -27,10 +27,9 @@ subir a cualquier hosting (Vercel, Netlify, GitHub Pages, etc.).
 1. Subí esta carpeta a un repositorio de GitHub (ver más abajo).
 2. Entrá a [vercel.com](https://vercel.com) con tu mail y conectá tu cuenta de GitHub.
 3. "Import Project" → elegí este repositorio → Vercel detecta Astro automáticamente → "Deploy".
-4. Te da una URL provisoria (`algo.vercel.app`). Para usar tu propio dominio
-   (por ejemplo `dulces.tonuttigodoy.com`), andá a Settings → Domains en Vercel,
-   agregá el dominio, y copiá el registro DNS que te muestra a donde administrás
-   `tonuttigodoy.com`.
+4. Te da una URL provisoria (`algo.vercel.app`). Para el dominio propio
+   (`dulcesgodoy.com`, ya conectado) se agrega en Settings → Domains en Vercel,
+   con los registros DNS cargados en Squarespace — esto ya está hecho.
 
 ### Subir esta carpeta a GitHub (si nunca lo hiciste)
 
@@ -47,51 +46,32 @@ git push -u origin main
 
 ## Analítica y verificación (Search Console, Analytics, Clarity, Meta Pixel)
 
-El código de las 4 integraciones ya está en `src/pages/index.astro`, apagado
-por defecto. Cada una se enciende sola apenas le des el ID correspondiente
-en un archivo `.env` (copiá `.env.example` a `.env`) o, una vez desplegado,
-como variable de entorno en Vercel/Netlify. Ninguna requiere tocar código de
-nuevo — solo pegar el valor.
+Los 4 IDs van directo como constantes al principio de `src/pages/index.astro`
+(no son datos secretos — quedan visibles en el código de cualquier sitio
+publicado, así que no tiene sentido complicarlo con variables de entorno ni
+tocar la configuración de Vercel). Cuando tengas un ID nuevo, pasámelo y lo
+subo por GitHub como cualquier otro cambio — Vercel lo despliega solo.
 
-Como crear cada cuenta y sacar el ID es algo que solo podés hacer vos (no
-puedo crear cuentas ni loguearme por vos en estos servicios), acá está el
-paso a paso de cada una. Cuando tengas los valores, pasámelos y los cargo.
+Estado:
 
-1. **Google Search Console** — [search.google.com/search-console](https://search.google.com/search-console)
-   → "Agregar propiedad" → tipo "Prefijo de URL" con la URL del sitio (una
-   vez que esté publicado) → método de verificación "Etiqueta HTML" → copiá
-   solo el valor del atributo `content` de la etiqueta que te muestra →
-   `PUBLIC_GSC_VERIFICATION`.
-2. **Google Analytics 4** — [analytics.google.com](https://analytics.google.com)
-   → Admin → Crear propiedad (nombre "Dulces Godoy") → al crear el "flujo de
-   datos" web te da un **Measurement ID** con formato `G-XXXXXXXXXX` →
-   `PUBLIC_GA_MEASUREMENT_ID`.
-3. **Microsoft Clarity** — [clarity.microsoft.com](https://clarity.microsoft.com)
-   → "Add new project" → nombre + la URL del sitio → el **Project ID** es el
-   código que aparece en la URL del proyecto (`clarity.microsoft.com/projects/view/XXXXXXXXXX`)
-   → `PUBLIC_CLARITY_PROJECT_ID`.
-4. **Meta Pixel** — [business.facebook.com/events_manager](https://business.facebook.com/events_manager)
-   (con la cuenta de Meta Business que ya usan para @dulcescaserosgodoy) →
-   "Conectar orígenes de datos" → "Web" → "Meta Pixel" → creá uno nuevo → el
-   **Pixel ID** es el número que te muestra → `PUBLIC_META_PIXEL_ID`.
-
-Nota sobre Search Console: la verificación (y que Google indexe algo) recién
-tiene sentido una vez que el sitio esté en su dominio real — conviene hacer
-este paso junto con el dominio/DNS (sección "Subirlo a producción" arriba),
-no antes. Los otros tres podés cargarlos ya mismo si querés, incluso antes
-de publicar, para que el sitio salga con la analítica funcionando desde el
-primer día.
+1. **Google Search Console** — ✅ verificado, por archivo HTML
+   (`public/googleac11eb3488b5fad8.html`).
+2. **Google Analytics 4** — ✅ cargado (`G-98NK5EN5Y2`).
+3. **Microsoft Clarity** — pendiente. [clarity.microsoft.com](https://clarity.microsoft.com)
+   → "Add new project" → nombre + `https://dulcesgodoy.com` → el **Project ID**
+   está en la URL del proyecto que te crea.
+4. **Meta Pixel** — pendiente. [business.facebook.com/events_manager](https://business.facebook.com/events_manager)
+   (con la cuenta de Meta Business de @dulcescaserosgodoy) → "Conectar orígenes
+   de datos" → "Web" → "Meta Pixel" → creá uno nuevo → el **Pixel ID** es el
+   número que te muestra.
 
 ## Qué falta confirmar antes de considerarlo terminado
 
-Ver la sección 12 del blueprint de marca para la lista completa. Los puntos
-más importantes:
-
-- A qué corresponde cada uno de los dos precios de Aguaí en la lista de
-  salón (dulce vs. mermelada).
-- Precio y disponibilidad actual de Higo, Kinoto, Guayaba y Batatita.
+- Microsoft Clarity y Meta Pixel (punto anterior).
+- Fotos por tamaño que todavía faltan: ver el punto "fotos que faltan" que
+  se le pasó a Matías por chat — Guayaba no tiene ninguna foto real todavía;
+  varios sabores faltan en 1,75kg.
 - Costo/plazo real de envío a otras provincias (courier a usar).
-- Una foto real de Naranja (hoy se muestra solo un color).
 
 ## Estructura
 
