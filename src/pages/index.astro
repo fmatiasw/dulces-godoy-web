@@ -298,6 +298,28 @@ const META_PIXEL_ID = '';
 
     footer.site-foot{padding:40px 24px 60px;text-align:center;font-size:.8rem;color:var(--ink-soft);}
 
+    /* RESEÑAS */
+    .resenas{padding-block:88px;background:var(--cream-2);}
+    .resenas-rating{
+      display:inline-flex;align-items:center;gap:8px;margin-top:10px;
+      text-decoration:none;color:var(--ink);font-weight:700;font-size:.95rem;
+      border:1px solid var(--line);border-radius:999px;padding:8px 18px;background:var(--cream);
+      transition:border-color .2s ease, transform .15s ease;
+    }
+    .resenas-rating:hover{border-color:var(--accent);transform:translateY(-1px);}
+    .resenas-rating .stars{color:var(--accent-2);letter-spacing:1px;font-size:.95rem;}
+    .resenas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px;}
+    @media (max-width:760px){.resenas-grid{grid-template-columns:1fr;}}
+    .resena-card{
+      background:var(--cream);border:1px solid var(--line);border-radius:20px;
+      padding:26px 24px;margin:0;text-align:left;
+    }
+    .resena-card p{
+      font-family:'Fraunces',serif;font-style:italic;font-size:1.1rem;
+      color:var(--ink);margin:0 0 14px;line-height:1.4;
+    }
+    .resena-card footer{font-size:.78rem;color:var(--ink-soft);font-weight:600;}
+
     /* ORIGEN */
     .origen{padding-block:88px;}
     .origen-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center;}
@@ -403,6 +425,7 @@ const META_PIXEL_ID = '';
   <ul class="nav-links">
     <li><a href="#familias">Selección</a></li>
     <li><a href="#origen">Origen</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
     <li><a href="#zona">Envíos</a></li>
   </ul>
   <a class="nav-cta" href="#familias">Ver dulces →</a>
@@ -572,6 +595,34 @@ const META_PIXEL_ID = '';
   </div>
 </section>
 
+<section class="resenas" id="opiniones">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="k">opiniones reales</span>
+      <h2>Lo que dicen en Google</h2>
+      <p>Reseñas de clientes en la ficha de Google de &ldquo;Dulces Caseros Godoy&rdquo;.</p>
+      <a class="resenas-rating" href="https://www.google.com/maps/search/?api=1&query=Dulces+Caseros+Godoy+Corrientes" target="_blank" rel="noopener">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <strong>4,4</strong> · 35 opiniones en Google ↗
+      </a>
+    </div>
+    <div class="resenas-grid">
+      <blockquote class="resena-card reveal">
+        <p>&ldquo;Excelente atención y los dulces riquísimos!&rdquo;</p>
+        <footer>— Reseña en Google</footer>
+      </blockquote>
+      <blockquote class="resena-card reveal">
+        <p>&ldquo;Dulces inmejorables&hellip;&rdquo;</p>
+        <footer>— Reseña en Google</footer>
+      </blockquote>
+      <blockquote class="resena-card reveal">
+        <p>&ldquo;Muy buenos productos&rdquo;</p>
+        <footer>— Reseña en Google</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
 <section class="cierre">
   <div class="container cierre-inner reveal">
     <h2>¿Pedimos?</h2>
@@ -593,7 +644,6 @@ const META_PIXEL_ID = '';
   <p style="margin:0 0 4px;">📍 Maipú 1346, Corrientes</p>
   <p style="margin:0 0 4px;">💬 3794050585 · 📸 @dulcescaserosgodoy</p>
   <p style="margin:0 0 16px;">✉️ oficinacentral@tonuttigodoy.com</p>
-  <p style="font-size:.74rem;">Sin sección de testimonios a propósito: se suma cuando haya comentarios reales de clientes para mostrar.</p>
 </footer>
 
 <script is:inline>
